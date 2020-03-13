@@ -1,13 +1,28 @@
 <html>
     <head>
         <title>Connect Four</title>
+        <link rel="stylesheet" href="iziToast.min.css">
+        <script src="iziToast.min.js"></script>
         <script src="game.js"></script>
         <link rel="stylesheet" href="game.css" type="text/css">
         
     </head>
 
     <body>
-        <div id="board_container">
+        <div id="container">
+            
+            <div class="titlecf">
+                <p id="f">Connect</p>
+            </div>
+
+            <div class="titlecf">
+                <p id="s">four</p>
+            </div>
+            
+            
+            
+            
+            
             <div id="board">
                 <div class="coin_shadow_container" id="ta" onmouseover = "showShadow(0)" onmouseout="hideShadow(0)" onclick="dropCoin(0)">
                         <div class="coin_shadow" id="ya" style="display: none;"></div>

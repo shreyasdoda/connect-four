@@ -1,8 +1,7 @@
-function a(){
-    alert("CLICKED");
+function notify(){
+    iziToast.show({
+        title: 'Hey',
+        message: 'What would you like to add?',
+        position: 'topCenter'
+    });
 }
-
-var items = [[0,0],[1,4]];
-
-items[1][1]++;
-console.log(items);

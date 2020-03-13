@@ -1,13 +1,43 @@
-#board_container{
-    margin: 30px auto auto;
-    height: 840px;
-    width: 840px;
+@import url('https://fonts.googleapis.com/css?family=Monoton&display=swap');  
+/* font-family: 'Monoton', cursive; */
+
+/* red: #ff6663  yellow: #fff656*/
+body {
+    background: #133e64;
+}
+.titlecf{
+    font-family: 'Monoton' , cursive;
+    font-size: 70px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 150px;
+    
+}
+#f{
+    align-self: center;
+    text-orientation: upright;
+    writing-mode: vertical-lr;
+    color: #ff6663;
+}
+#s{
+    align-self: center;
+    text-orientation: upright;
+    writing-mode: vertical-lr;
+    color: #ffd900;
+}
+
+#container{
+    height: 100%;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
 }
 
 #board{
     margin: 30px auto auto;
-    height: 100%;
-    width: 100%;
+    height: 840px;
+    width: 840px;
     display: grid;
     grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
     grid-template-rows:    1fr 1fr 1fr 1fr 1fr 1fr 1fr;
@@ -17,9 +47,9 @@
     width: 120px;
     height: 120px;
     background-color: #2e9dff;
-    border-width: 1px;
+    border-width: 4px;
     border-style: solid;
-    border-color: black;
+    border-color: #2171b7;
     position: relative;
     z-index: 0;
 }
@@ -27,7 +57,7 @@
 .coin_shadow_container{
     width: 120px;
     height: 120px;
-    background-color: white;
+    background-color: #133e64;
 }
 
 .coin_shadow{
@@ -183,6 +213,7 @@
 }
 
 #aa{
+    border-bottom-left-radius: 5px;
     grid-area: 7/1/span1/span1;
 }
 #ab{
@@ -201,5 +232,6 @@
     grid-area: 7/6/span1/span1;
 }
 #ag{
+    border-bottom-right-radius: 5px;
     grid-area: 7/7/span1/span1;
 }

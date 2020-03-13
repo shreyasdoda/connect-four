@@ -37,15 +37,66 @@ function initCoin(col){
     dropdiv.style.margin = '20px 20px';
 
     if(isRED){
-        dropdiv.style.backgroundColor='#ff3d33';
+        dropdiv.style.backgroundColor='#ff6663';
     } else {
-        dropdiv.style.backgroundColor='#fffc4f';
+        dropdiv.style.backgroundColor='#fff656';
     }
 
     let parent = document.getElementById(map[maxDepth[col]][col]);    
     parent.appendChild(dropdiv);
 
     
+}
+
+function alertWinner(){
+    console.log(layout);
+    gameOver = true;
+    if(isRED){
+        iziToast.success({
+            title: 'NOICE',
+            message: 'Red is the winner!',
+            color: '#ff6663',
+            position: 'topCenter'
+        });
+    } else {
+        iziToast.success({
+            title: 'NOICE',
+            message: 'Yellow is the winner!',
+            color: '#fff656',
+            position: 'topCenter'
+        });
+    }
+    //location.reload();
+}
+
+function playAnotherQ(){
+    iziToast.show({
+        theme: 'dark',
+        icon: 'icon-person',
+        title: '',
+        message: 'Would you like to play again?',
+        position: 'center', // bottomRight, bottomLeft, topRight, topLeft, topCenter, bottomCenter
+        progressBarColor: 'rgb(0, 255, 184)',
+        buttons: [
+            ['<button>Ok</button>', function (instance, toast) {
+                location.reload();
+            }, true], // true to focus
+            ['<button>Close</button>', function (instance, toast) {
+                instance.hide({
+                    transitionOut: 'fadeOutUp',
+                    onClosing: function(instance, toast, closedBy){
+                        showHomeScreen(); // The return will be: 'closedBy: buttonName'
+                    }
+                }, toast, 'buttonName');
+            }]
+        ],
+        onOpening: function(instance, toast){
+            console.info('callback abriu!');
+        },
+        onClosing: function(instance, toast, closedBy){
+            console.info('closedBy: ' + closedBy); // tells if it was closed by 'drag' or 'button'
+        }
+    });
 }
 
 function checkState(){
@@ -59,14 +110,8 @@ function checkState(){
 
                 if(count==4){
                     if(layout[j][i]==2 || layout[j][i]==1){
-                        console.log(layout);
-                        gameOver = true;
-                        if(isRED){
-                            alert("Red is the winner!!!");
-                        } else {
-                            alert("Yellow is the winner!!!");
-                        }
-                        location.reload();
+                        alertWinner();
+                        break;  
                     } else {
                         count = 1;
                     }
@@ -86,43 +131,7 @@ function checkState(){
     
                     if(count==4){
                         if(layout[i][j]==2 || layout[i][j]==1){
-                            console.log(layout);
-                            gameOver = true;
-                            if(isRED){
-                                alert("Red is the winner!!!");
-                            } else {
-                                alert("Yellow is the winner!!!");
-                            }
-                            location.reload();
-                        } else {
-                            count = 1;
-                        }
-                    }
-                } else {
-                    count=1;
-                }
-            }
-        }
-    }
-    //DIAGONAL CHECK
-    if(!gameOver){
-        for(let i=3; i<=5; i++){
-            let t;
-            let u;
-            count = 1;
-            for(t=0, u=i; t<i, u>0; t++, u--){
-                if(layout[t][u] == layout[t+1][u-1]){
-                    count++;
-
-                    if(count==4){
-                        if(layout[t][u]==2 || layout[t][u]==1){
-                            console.log(layout);
-                            gameOver = true;
-                            if(isRED){
-                                alert("Red is the winner!!!");
-                            } else {
-                                alert("Yellow is the winner!!!");
-                            }
+                            alertWinner();
                             break;
                         } else {
                             count = 1;
@@ -134,27 +143,25 @@ function checkState(){
             }
         }
     }
+    
 
-
+    //DIAGONAL CHECK
+    //1-1
     if(!gameOver){
-        for(let i=0; i<=2; i++){
+        for(let i=3; i<=5; i++){
             let t;
             let u;
-            for(u=i, t=6; u<5, t>i+1; u++, t--){
-                if(layout[t][u] == layout[t-1][u+1]){
+            count = 1;
+            for(t=0, u=i; t<i, u>0; t++, u--){
+                if(layout[t][u] == layout[t+1][u-1]){
                     count++;
-
+    
                     if(count==4){
                         if(layout[t][u]==2 || layout[t][u]==1){
-                            console.log(layout);
-                            gameOver = true;
-                            if(isRED){
-                                alert("Red is the winner!!!");
-                            } else {
-                                alert("Yellow is the winner!!!");
-                            }
-                            //break;
-                            location.reload();
+                            alertWinner();
+                            break;  
+
+                            
                         } else {
                             count = 1;
                         }
@@ -166,13 +173,102 @@ function checkState(){
         }
     }
 
+    //1-2
+    if(!gameOver){
+        for(let i=1; i<4; i++){
+            let t;
+            let u;
+            count = 1;
+            for(u=5, t=i; u>i-1, t<6; u--, t++){
+
+                if(layout[t][u] == layout[t+1][u-1]){
+                    count++;
+    
+                    if(count==4){
+                        if(layout[t][u]==2 || layout[t][u]==1){
+                            alertWinner();
+                            break;
+                            // location.reload();
+                        } else {
+                            count = 1;
+                        }
+                    }
+                } else {
+                    count=1;
+                }
+            }
+        }
+    }
+
+    //2-1
+    if(!gameOver){
+        for(let i=3; i>=1; i--){
+            let t;
+            let u;
+            count = 1;
+            for(u=6-i, t=6; u>0, t>i; u--, t--){
+                if(layout[u][t] == layout[u-1][t-1]){
+                    count++;
+    
+                    if(count==4){
+                        if(layout[u][t]==2 || layout[u][t]==1){
+                            alertWinner();
+                            break;
+                            // location.reload();
+                        } else {
+                            count = 1;
+                        }
+                    }
+                } else {
+                    count=1;
+                }
+            }
+        }
+    }
+
+    //2-2
+    if(!gameOver){
+        for(let i=1; i<4; i++){
+            let t;
+            let u;
+            count = 1;  
+            for(u=0, t=i; u<6-i, t<6; u++, t++){
+                if(layout[t][u] == layout[t+1][u+1]){
+                    count++;
+    
+                    if(count==4){
+                        if(layout[t][u]==2 || layout[t][u]==1){
+                            alertWinner();
+                            break;
+                            // location.reload();
+                        } else {
+                            count = 1;
+                        }
+                    }
+                } else {
+                    count=1;
+                }
+            }
+        }
+    }
+
+    if(gameOver){
+        playAnotherQ();
+    }
+
     isRED = !isRED;
     console.log(layout);
 
 }
 
 function alertMaxLimit(){
-    alert("This column is full");
+    
+    iziToast.error({
+        title: 'Error',
+        message: 'Column is full',
+        position: 'topCenter'
+    });
+
 }
 
 function dropCoin(col){
