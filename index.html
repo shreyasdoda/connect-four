@@ -1,10 +1,15 @@
 <html>
     <head>
         <title>Connect Four</title>
+
+        <link rel="stylesheet" href="introjs.css">
+        <script  type="text/javascript" src="intro.js"></script>
+
         <link rel="stylesheet" href="iziToast.min.css">
         <script src="iziToast.min.js"></script>
-        <script src="game.js"></script>
+
         <link rel="stylesheet" href="game.css" type="text/css">
+        <script src="game.js"></script>
         
     </head>
 
@@ -12,17 +17,14 @@
         <div id="container">
             
             <div class="titlecf">
-                <p id="f">Connect</p>
+                <p id="f" data-step="1" data-intro='Hello step one!'>Connect</p>
             </div>
 
             <div class="titlecf">
-                <p id="s">four</p>
+                <p id="s" data-step="2" data-intro="SECOND">four</p>
             </div>
             
-            
-            
-            
-            
+
             <div id="board">
                 <div class="coin_shadow_container" id="ta" onmouseover = "showShadow(0)" onmouseout="hideShadow(0)" onclick="dropCoin(0)">
                         <div class="coin_shadow" id="ya" style="display: none;"></div>
@@ -106,6 +108,9 @@
                 <div class="bg" id="fg"></div>
 
             </div>
-        </div>    
+        </div> 
+        
+        
+        
     </body>
 </html>

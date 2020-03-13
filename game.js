@@ -8,6 +8,30 @@ var map = [['ta','tb','tc','td','te','tf','tg'],['ba','bb','bc','bd','be','bf','
 var maxDepth = [ 6 , 6 , 6 , 6 , 6 , 6 , 6 ];
 var shadowMap = [ ['ra','rb','rc','rd','re','rf','rg'] , ['ya','yb','yc','yd','ye','yf','yg'] ];
 
+alert("Please read the instructions for Connect 4 from this link (max 1min read) before clicking OK:\nhttps://www.instructables.com/id/How-to-play-connect-four/");
+// var introguide = introJs();
+
+// introguide.setOptions({
+
+//     steps: [
+//        {
+//         element: '#f',
+//           intro: 'FIRST',
+//           position: 'bottom'
+//        } ,
+//        {
+//         element: '#s',
+//           intro: 'SECOND',
+//           position: 'bottom'
+//        }
+
+//     ]
+
+// });
+
+// introJs().start();
+
+
 function showShadow(column){
     if(isRED){
         let item = document.getElementById(shadowMap[0][column]);
