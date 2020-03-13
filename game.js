@@ -2,7 +2,9 @@
 var gameOver = false;
 var isRED = false;
 var dropdiv;
+var leftM, topM;
 var layout = [ [0,0,0,0,0,0] , [0,0,0,0,0,0] , [0,0,0,0,0,0] , [0,0,0,0,0,0] , [0,0,0,0,0,0] , [0,0,0,0,0,0] , [0,0,0,0,0,0] ];
+var map = [['ta','tb','tc','td','te','tf','tg'],['ba','bb','bc','bd','be','bf','bg'],['ca','cb','cc','cd','ce','cf','cg'],['da','db','dc','dd','de','df','dg'],['ea','eb','ec','ed','ee','ef','eg'],['fa','fb','fc','fd','fe','ff','fg'],['aa','ab','ac','ad','ae','af','ag']]
 var maxDepth = [ 6 , 6 , 6 , 6 , 6 , 6 , 6 ];
 
 
@@ -146,19 +148,31 @@ function hideTG(){
     }
 }
 
-function initCoin(dropped){
-    dropped.style.width = '80px';
-    dropped.style.height = '80px';
-    dropped.style.margin = '20px 20px';
-    dropped.style.borderRadius = '50%';
-    dropped.style.display = 'block';
+function initCoin(col){
+    dropdiv = document.createElement("div");
 
+    dropdiv.style.width = '80px';
+    dropdiv.style.height = '80px';
+    dropdiv.style.borderRadius = '50%';
+    dropdiv.style.display = 'block';
+    dropdiv.style.margin = '20px 20px';
+    // dropped.style.position = 'absolute';
+
+    // topM = 50 + maxDepth[col]*120;
+    // dropdiv.style.top =  topM + 'px';
+    // leftM = 20 + (4+col)*120;
+    // dropdiv.style.left = leftM + 'px';
+    
 
     if(isRED){
-        dropped.style.backgroundColor='#ff3d33';
+        dropdiv.style.backgroundColor='#ff3d33';
     } else {
-        dropped.style.backgroundColor='#fffc4f';
+        dropdiv.style.backgroundColor='#fffc4f';
     }
+
+    let parent = document.getElementById(map[maxDepth[col]][col]);    
+    parent.appendChild(dropdiv);
+
     
 }
 
@@ -293,12 +307,7 @@ function alertMaxLimit(){
 function dropTA(){
     
     if(maxDepth[0]>0){
-        dropdiv = document.createElement("div");
-        initCoin(dropdiv);
-
-        let parent = document.getElementById('ta');
-        parent.appendChild(dropdiv);
-
+        initCoin(0);
 
         if(isRED){
             layout[0][maxDepth[0]-1]++;
@@ -306,22 +315,16 @@ function dropTA(){
             layout[0][maxDepth[0]-1]++;
             layout[0][maxDepth[0]-1]++;
         }
-
         maxDepth[0]--;
-
         checkState();
     } else {
-    alertMaxLimit();
+        alertMaxLimit();
     }
 }
 
 function dropTB(){
     if(maxDepth[1]>0){
-        dropdiv = document.createElement("div");
-        initCoin(dropdiv);
-
-        let parent = document.getElementById('tb');
-        parent.appendChild(dropdiv);
+        initCoin(1);
 
 
         if(isRED){
@@ -342,11 +345,7 @@ function dropTB(){
 function dropTC(){
     
     if(maxDepth[2]>0){
-        dropdiv = document.createElement("div");
-        initCoin(dropdiv);
-
-        let parent = document.getElementById('tc');
-        parent.appendChild(dropdiv);
+        initCoin(2);
 
 
         if(isRED){
@@ -367,11 +366,7 @@ function dropTC(){
 function dropTD(){
     
     if(maxDepth[3]>0){
-        dropdiv = document.createElement("div");
-        initCoin(dropdiv);
-
-        let parent = document.getElementById('td');
-        parent.appendChild(dropdiv);
+       initCoin(3);
 
 
         if(isRED){
@@ -392,11 +387,7 @@ function dropTD(){
 function dropTE(){
     
     if(maxDepth[4]>0){
-        dropdiv = document.createElement("div");
-        initCoin(dropdiv);
-
-        let parent = document.getElementById('te');
-        parent.appendChild(dropdiv);
+        initCoin(4);
 
 
         if(isRED){
@@ -417,11 +408,7 @@ function dropTE(){
 function dropTF(){
     
     if(maxDepth[5]>0){
-        dropdiv = document.createElement("div");
-        initCoin(dropdiv);
-
-        let parent = document.getElementById('tf');
-        parent.appendChild(dropdiv);
+        initCoin(5);
 
 
         if(isRED){
@@ -442,11 +429,7 @@ function dropTF(){
 function dropTG(){
     
     if(maxDepth[6]>0){
-        dropdiv = document.createElement("div");
-        initCoin(dropdiv);
-
-        let parent = document.getElementById('tg');
-        parent.appendChild(dropdiv);
+        initCoin(6);
 
 
         if(isRED){
